@@ -13,7 +13,15 @@
       "description": "Coffee",
       "type": "outcome",
       "category": "Food",
-      "price": 14000,
+      "price": 4000,
+      "createdAt": "2023-08-14"
+    },
+    {
+      "id": 3,
+      "description": "Website development",
+      "type": "outcome",
+      "category": "Freela",
+      "price": 1000,
       "createdAt": "2023-08-14"
     }
   ]
