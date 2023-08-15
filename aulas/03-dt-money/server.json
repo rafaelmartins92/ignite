@@ -2,7 +2,7 @@
   "transactions": [
     {
       "id": 1,
-      "descripiton": "Website development",
+      "description": "Website development",
       "type": "income",
       "category": "Freela",
       "price": 14000,
@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "descripiton": "Coffee",
+      "description": "Coffee",
       "type": "outcome",
       "category": "Food",
       "price": 14000,
