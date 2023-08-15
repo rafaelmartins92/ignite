@@ -1,0 +1,20 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "descripiton": "Website development",
+      "type": "income",
+      "category": "Freela",
+      "price": 14000,
+      "createdAt": "2023-08-14"
+    },
+    {
+      "id": 2,
+      "descripiton": "Coffee",
+      "type": "outcome",
+      "category": "Food",
+      "price": 14000,
+      "createdAt": "2023-08-14"
+    }
+  ]
+}
