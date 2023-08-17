@@ -23,6 +23,30 @@
       "category": "Freela",
       "price": 1000,
       "createdAt": "2023-08-14"
+    },
+    {
+      "description": "teste",
+      "price": 10,
+      "category": "nenhuma",
+      "type": "income",
+      "createdAt": "2023-08-17T00:11:32.574Z",
+      "id": 4
+    },
+    {
+      "description": "teste",
+      "price": 10,
+      "category": "nenhuma",
+      "type": "income",
+      "createdAt": "2023-08-17T00:11:36.126Z",
+      "id": 5
+    },
+    {
+      "description": "oi",
+      "price": 299,
+      "category": "nenhuma",
+      "type": "outcome",
+      "createdAt": "2023-08-17T00:23:19.168Z",
+      "id": 6
     }
   ]
 }
