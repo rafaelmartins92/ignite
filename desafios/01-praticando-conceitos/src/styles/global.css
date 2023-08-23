@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --white: #fafafa;
+
+  --gray-100: #f2f2f2;
+  --gray-200: #d9d9d9;
+  --gray-300: #808080;
+  --gray-400: #333333;
+  --gray-500: #262626;
+  --gray-600: #1a1a1a;
+  --gray-700: #0d0d0d;
+
+  --yellow-300: #fde047;
+  --yellow-400: #facc15;
+  --yellow-500: #eab308;
+
+  --calango-400: #ffaa00;
+
+  --fuschia-300: #f0abfc;
+  --fuschia-400: #e879f9;
+  --fuschia-500: #d946ef;
+
+  --red-500: #f75a68;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--yellow-500);
+}
+
+body {
+  background: var(--gray-600);
+  color: var(--gray-100);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialised;
+}
+
+button {
+  cursor: pointer;
+}
