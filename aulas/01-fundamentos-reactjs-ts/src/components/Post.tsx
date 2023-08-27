@@ -1,11 +1,10 @@
-import { format, formatDistanceToNow } from "date-fns";
-import ptBR from "date-fns/locale/pt-BR";
+import { format, formatDistanceToNow } from 'date-fns';
 
-import { Avatar } from "./Avatar";
-import { Comment } from "./Comment";
+import { Avatar } from './Avatar';
+import { Comment } from './Comment';
 
-import styles from "./Post.module.css";
-import { useState, FormEvent, ChangeEvent, InvalidEvent } from "react";
+import styles from './Post.module.css';
+import { useState, FormEvent, ChangeEvent, InvalidEvent } from 'react';
 
 interface Author {
   name: string;
@@ -14,7 +13,7 @@ interface Author {
 }
 
 interface Content {
-  type: "paragraph" | "link";
+  type: 'paragraph' | 'link';
   content: string;
 }
 
@@ -30,19 +29,15 @@ interface PostProps {
 }
 
 export function Post({ post }: PostProps) {
-  const [comments, setComments] = useState(["Post muito bacana!"]);
-  const [newCommentText, setNewCommentText] = useState("");
+  const [comments, setComments] = useState(['Nice post!']);
+  const [newCommentText, setNewCommentText] = useState('');
 
   const publishedDateFormatted = format(
     post.publishedAt,
-    "d 'de' LLLL, 'às' HH-mm'h'",
-    {
-      locale: ptBR,
-    }
+    "d 'de' LLLL, 'às' HH-mm'h'"
   );
 
   const publishedDateRelativeToNow = formatDistanceToNow(post.publishedAt, {
-    locale: ptBR,
     addSuffix: true,
   });
 
@@ -50,16 +45,16 @@ export function Post({ post }: PostProps) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
-    setNewCommentText("");
+    setNewCommentText('');
   }
 
   function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    event.target.setCustomValidity("");
+    event.target.setCustomValidity('');
     setNewCommentText(event.target.value);
   }
 
   function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
-    event.target.setCustomValidity("Esse campo é obrigatório!");
+    event.target.setCustomValidity('Esse campo é obrigatório!');
   }
 
   function deleteComment(commentToDelete: string) {
@@ -92,9 +87,9 @@ export function Post({ post }: PostProps) {
 
       <div className={styles.content}>
         {post.content.map((line) => {
-          if (line.type === "paragraph") {
+          if (line.type === 'paragraph') {
             return <p key={line.content}>{line.content}</p>;
-          } else if (line.type === "link") {
+          } else if (line.type === 'link') {
             return (
               <p key={line.content}>
                 <a href="#">{line.content}</a>
@@ -105,10 +100,10 @@ export function Post({ post }: PostProps) {
       </div>
 
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
-        <strong>Deixe seu feedback</strong>
+        <strong>Give your feedback</strong>
         <textarea
           name="comment"
-          placeholder="Deixe um comentário"
+          placeholder="Give your feedback "
           value={newCommentText}
           onChange={handleNewCommentChange}
           onInvalid={handleNewCommentInvalid}
@@ -116,7 +111,7 @@ export function Post({ post }: PostProps) {
         />
         <footer>
           <button type="submit" disabled={isNewCommentEmpty}>
-            Publicar
+            Publish
           </button>
         </footer>
       </form>
