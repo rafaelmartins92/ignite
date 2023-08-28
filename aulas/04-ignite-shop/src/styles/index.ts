@@ -1,4 +1,5 @@
 import { createStitches } from '@stitches/react';
+import type * as Stitches from '@stitches/react';
 
 export const {
   config,
@@ -12,7 +13,9 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      rocketseat: '#8257e6'
+      rocketseat: '#8257e6',
     },
   },
 });
+
+type CSS = Stitches.CSS<typeof config>;
