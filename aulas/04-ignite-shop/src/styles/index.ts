@@ -20,8 +20,15 @@ export const {
       gray100: '#e1e1e6',
 
       yellow400: '#FBBF24',
-      yellow300: '#FCD34D'
-    }
+      yellow300: '#FCD34D',
+    },
+
+    fontSize: {
+      md: '1.125rem',
+      lg: '1.25rem',
+      xl: '1.5rem',
+      '2xl': '2rem',
+    },
   },
 });
 
