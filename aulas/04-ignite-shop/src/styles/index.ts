@@ -23,7 +23,7 @@ export const {
       yellow300: '#FCD34D',
     },
 
-    fontSize: {
+    fontSizes: {
       md: '1.125rem',
       lg: '1.25rem',
       xl: '1.5rem',
