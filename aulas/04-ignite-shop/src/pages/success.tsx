@@ -1,11 +1,12 @@
-import Link from 'next/link';
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import Head from 'next/head';
 import Stripe from 'stripe';
 
 import { stripe } from '../lib/stripe';
 
 import { ImageContainer, SuccessContainer } from '../styles/pages/success';
-import Image from 'next/image';
 
 interface SuccessProps {
   customerName: string;
@@ -17,22 +18,30 @@ interface SuccessProps {
 
 export default function Success({ customerName, product }: SuccessProps) {
   return (
-    <SuccessContainer>
-      <h1>Purchase made!</h1>
+    <>
+      <Head>
+        <title>Rafael Martins | Purchase made!</title>
 
-      <ImageContainer>
-        <Image src={product.imageUrl} width={120} height={110} alt="" />
-      </ImageContainer>
+        <meta name="robots" content="noindex" />
+      </Head>
 
-      <p>
-        That`s awesome, <strong>{customerName}</strong>!
-      </p>
-      <p>
-        Your <strong>{product.name}</strong> is on its way to your home.
-      </p>
+      <SuccessContainer>
+        <h1>Purchase made!</h1>
 
-      <Link href={'/'}>Back to catalog</Link>
-    </SuccessContainer>
+        <ImageContainer>
+          <Image src={product.imageUrl} width={120} height={110} alt="" />
+        </ImageContainer>
+
+        <p>
+          That`s awesome, <strong>{customerName}</strong>!
+        </p>
+        <p>
+          Your <strong>{product.name}</strong> is on its way to your home.
+        </p>
+
+        <Link href={'/'}>Back to catalog</Link>
+      </SuccessContainer>
+    </>
   );
 }
 
@@ -42,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       redirect: {
         destination: '/',
         permanent: false,
-      }
+      },
     };
   }
 
