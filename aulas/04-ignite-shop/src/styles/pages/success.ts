@@ -18,7 +18,6 @@ export const SuccessContainer = styled('main', {
     color: '$gray300',
     maxWidth: 560,
     textAlign: 'center',
-    marginTop: '2rem',
     lineHeight: '1.4',
   },
 
@@ -44,6 +43,7 @@ export const ImageContainer = styled('div', {
   borderRadius: 8,
   padding: '0.25rem',
   marginTop: '4rem',
+  marginBottom: '4rem',
 
   display: 'flex',
   alignItems: 'center',
