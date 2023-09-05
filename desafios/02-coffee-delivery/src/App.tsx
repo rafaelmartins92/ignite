@@ -1,8 +1,20 @@
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
+
+import { Router } from './routes';
+
+import { defaultTheme } from './styles/theme/default';
+import { GlobalStyle } from './styles/global';
+
 function App() {
   return (
-    <>
-      <h1>HEllo world</h1>
-    </>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle />
+
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
