@@ -49,7 +49,7 @@ export function ProductCard({ product }: ProductCardsProps) {
         </div>
 
         <AddCartWrapper>
-          <QuantityInput />
+          <QuantityInput size="medium" />
           <button>
             <ShoppingCart size={22} weight="fill" />
           </button>

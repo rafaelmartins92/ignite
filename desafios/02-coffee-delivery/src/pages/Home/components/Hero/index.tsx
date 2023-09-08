@@ -1,7 +1,9 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
-import heroImg from '../../../../assets/hero-img.png';
+import { useTheme } from 'styled-components';
+
 import { BulletPoint } from '../../../../components/BulletPoint';
 import { RegularText } from '../../../../components/Typography';
+import heroImg from '../../../../assets/hero-img.png';
 
 import {
   BulletsContainer,
@@ -9,7 +11,6 @@ import {
   HeroContent,
   HeroTitle,
 } from './styles';
-import { useTheme } from 'styled-components';
 
 export function Hero() {
   const { colors } = useTheme();

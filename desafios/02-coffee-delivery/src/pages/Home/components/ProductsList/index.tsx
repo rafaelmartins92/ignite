@@ -1,6 +1,8 @@
+import { ProductCard } from '../ProductCard';
+
 import { TitleText } from '../../../../components/Typography';
 import { coffees } from '../../../../data/productslist';
-import { ProductCard } from '../ProductCard';
+
 import { ProductList, ProductsListContainer } from './styles';
 
 export function ProductsList() {
