@@ -1,20 +1,49 @@
 import { Trash } from 'phosphor-react';
 
-import { RegularText } from '../../../../components/Typography';
 import { QuantityInput } from '../../../Home/components/QuantityInput';
+import { RegularText } from '../../../../components/Typography';
+import { CartItem } from '../../../../contexts/CartContext';
+import { formatMoney } from '../../../../utils/formatMoney';
+import { useCart } from '../../../../hooks/useCart';
 
 import { ActionsContainer, ProductCardContainer, RemoveButton } from './styles';
 
-export function ProductCard() {
+interface ProductCardProps {
+  product: CartItem;
+}
+
+export function ProductCard({ product }: ProductCardProps) {
+  const { changeCartItemQuantity, removeCartItem } = useCart();
+
+  function handleIncrease() {
+    changeCartItemQuantity(product.id, 'increase');
+  }
+
+  function handleDecrease() {
+    changeCartItemQuantity(product.id, 'decrease');
+  }
+
+  function handleRemove() {
+    removeCartItem(product.id);
+  }
+
+  const productTotalPrice = product.price * product.quantity;
+  const formattedPrice = formatMoney(productTotalPrice);
+
   return (
     <ProductCardContainer>
       <div>
-        <img src="/products/americano.png" alt="" />
+        <img src={`/products/${product.imagePath}`} alt="" />
         <div>
-          <RegularText color="subtitle">Americano</RegularText>
+          <RegularText color="subtitle">{product.name}</RegularText>
           <ActionsContainer>
-            <QuantityInput size="small" />
-            <RemoveButton>
+            <QuantityInput
+              size="small"
+              quantity={product.quantity}
+              onIncrease={handleIncrease}
+              onDecrease={handleDecrease}
+            />
+            <RemoveButton onClick={handleRemove}>
               <Trash size={16} />
               Remove
             </RemoveButton>
@@ -22,7 +51,7 @@ export function ProductCard() {
         </div>
       </div>
 
-      <p>$9,90</p>
+      <p>$ {formattedPrice}</p>
     </ProductCardContainer>
   );
 }

@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { ShoppingCart } from 'phosphor-react';
 
 import { QuantityInput } from '../QuantityInput';
 
 import { RegularText, TitleText } from '../../../../components/Typography';
 import { formatMoney } from '../../../../utils/formatMoney';
+import { useCart } from '../../../../hooks/useCart';
 
 import {
   AddCartWrapper,
@@ -28,6 +30,24 @@ interface ProductCardsProps {
 }
 
 export function ProductCard({ product }: ProductCardsProps) {
+  const [quantity, setQuantity] = useState(1);
+  const { addProductToCart } = useCart();
+
+  function handleIncrease() {
+    setQuantity((state) => state + 1);
+  }
+
+  function handleDecrease() {
+    setQuantity((state) => state - 1);
+  }
+
+  function handleAddToCart() {
+    const productToAdd = {
+      ...product,
+      quantity,
+    };
+    addProductToCart(productToAdd);
+  }
   const formattedPrice = formatMoney(product.price);
 
   return (
@@ -49,8 +69,13 @@ export function ProductCard({ product }: ProductCardsProps) {
         </div>
 
         <AddCartWrapper>
-          <QuantityInput size="medium" />
-          <button>
+          <QuantityInput
+            size="medium"
+            quantity={quantity}
+            onIncrease={handleIncrease}
+            onDecrease={handleDecrease}
+          />
+          <button onClick={handleAddToCart}>
             <ShoppingCart size={22} weight="fill" />
           </button>
         </AddCartWrapper>
