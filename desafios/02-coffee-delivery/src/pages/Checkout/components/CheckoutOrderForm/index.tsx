@@ -6,10 +6,7 @@ import { PaymentMethodOptions } from './PaymentMethodOptions';
 import { SectionTitle } from '../SectionTitle';
 import { TitleText } from '../../../../components/Typography';
 
-import {
-  CheckoutOrderFormContainer,
-  FormSectionContainer,
-} from './styles';
+import { CheckoutOrderFormContainer, FormSectionContainer } from './styles';
 
 export function CheckoutOrderForm() {
   const { colors } = useTheme();

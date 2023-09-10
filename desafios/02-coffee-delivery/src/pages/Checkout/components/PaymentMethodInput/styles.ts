@@ -1,6 +1,21 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const PaymentMethodInputContainer = styled.div`
+  input {
+    visibility: hidden;
+    appearance: none;
+  }
+
+  input:checked + label div {
+    ${({ theme }) => css`
+      background: ${theme.colors['brand-purple-light']};
+      border-color: ${theme.colors['brand-purple']};
+    `}
+  }
+`;
+
+export const ContentContainer = styled.div`
+  cursor: pointer;
   padding: 0 1rem;
   background: ${({ theme }) => theme.colors['base-button']};
   color: ${({ theme }) => theme.colors['base-text']};

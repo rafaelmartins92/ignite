@@ -34,7 +34,7 @@ export function ConfirmationSection() {
         </RegularText>
       </div>
 
-      <Button text="Confirm order" disabled={cartQuantity <= 0} />
+      <Button text="Confirm order" disabled={cartQuantity <= 0} type="submit" />
     </ConfimartionSectionContainer>
   );
 }

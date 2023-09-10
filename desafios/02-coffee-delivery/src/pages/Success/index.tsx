@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { Clock, CurrencyDollar, MapPin } from 'phosphor-react';
 
+import { CheckoutData } from '../Checkout';
+import { paymentMethods } from '../Checkout/components/CheckoutOrderForm/PaymentMethodOptions';
 import { RegularText, TitleText } from '../../components/Typography';
 import { BulletPoint } from '../../components/BulletPoint';
 
@@ -8,8 +12,24 @@ import successIllustration from '../../assets/success-illustration.svg';
 
 import { OrderDetailsContainer, SuccessContainer } from './styles';
 
+interface LocationType {
+  state: CheckoutData;
+}
+
 export function SuccessPage() {
   const { colors } = useTheme();
+
+  const { state } = useLocation() as unknown as LocationType;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/');
+    }
+  }, []);
+
+  if (!state) return <></>;
 
   return (
     <SuccessContainer className="container">
@@ -28,9 +48,12 @@ export function SuccessPage() {
             iconBgColor={colors['brand-purple']}
             text={
               <RegularText>
-                Delivery to <strong>Joe Doe Street, 999</strong>
+                Delivery to{' '}
+                <strong>
+                  {state.street}, {state.number}
+                </strong>
                 <br />
-                Santos - São Paulo, SP
+                {state.district} - {state.city}, {state.state}
               </RegularText>
             }
           />
@@ -50,7 +73,7 @@ export function SuccessPage() {
             text={
               <RegularText>
                 Payment upon delivery <br />
-                <strong>Credit Card</strong>
+                <strong>{paymentMethods[state.paymentMethod].label}</strong>
               </RegularText>
             }
           />
