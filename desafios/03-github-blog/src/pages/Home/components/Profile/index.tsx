@@ -1,43 +1,83 @@
+import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 import { ExternalLink } from '../../../../components/ExternalLink';
+import { Spinner } from '../../../../components/Spinner';
+import { api } from '../../../../lib/axios';
 
 import { ProfileContainer, ProfileDetails, ProfilePicture } from './styles';
 
+const username = import.meta.env.VITE_GITHUB_USERNAME;
+interface ProfileData {
+  login: string;
+  bio: string;
+  avatar_url: string;
+  html_url: string;
+  name: string;
+  company?: string;
+  followers: number;
+}
+
 export function Profile() {
+  const [profileData, setProfileData] = useState<ProfileData>(
+    {} as ProfileData
+  );
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getProfileData = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await api.get(`/users/${username}`);
+
+      setProfileData(response.data);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [profileData]);
+
+  useEffect(() => {
+    getProfileData();
+  }, []);
+
   return (
     <ProfileContainer>
-      <ProfilePicture src="https://github.com/rafaelmartins92.png" />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <ProfilePicture src={profileData.avatar_url} />
 
-      <ProfileDetails>
-        <header>
-          <h1>Rafael Martins</h1>
-          <ExternalLink
-            text="Github"
-            href="https://github.com/rafaelmartins92"
-          />
-        </header>
-        <p>
-          Front-end Developer | JavaScript | TypeScript | React JS | Next.js |
-          Tailwind | Styled Components | SASS | CSS | HTML |
-        </p>
-        <ul>
-          <li>
-            <FontAwesomeIcon icon={faGithub} />
-            rafaelmartins92
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faBuilding} />
-            Deal Technologies
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faUserGroup} />
-            137 followers
-          </li>
-        </ul>
-      </ProfileDetails>
+          <ProfileDetails>
+            <header>
+              <h1>{profileData.name}</h1>
+              <ExternalLink
+                text="Github"
+                href={profileData.html_url}
+                target="_blank"
+              />
+            </header>
+            <p>{profileData.bio}</p>
+            <ul>
+              <li>
+                <FontAwesomeIcon icon={faGithub} />
+                {profileData.login}
+              </li>
+              {profileData?.company && (
+                <li>
+                  <FontAwesomeIcon icon={faBuilding} />
+                  {profileData.company}
+                </li>
+              )}
+              <li>
+                <FontAwesomeIcon icon={faUserGroup} />
+                {profileData.followers} followers
+              </li>
+            </ul>
+          </ProfileDetails>
+        </>
+      )}
     </ProfileContainer>
   );
 }

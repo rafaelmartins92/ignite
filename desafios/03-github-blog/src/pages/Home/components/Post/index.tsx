@@ -1,30 +1,22 @@
+import { IPost } from '../..';
+import { relativeDateFormatter } from '../../../../utils/formatter';
+
 import { PostContainer } from './styles';
 
-export function Post() {
+interface PostProps {
+  post: IPost;
+}
+
+export function Post({ post }: PostProps) {
+  const formattedDate = relativeDateFormatter(post.created_at);
+
   return (
-    <PostContainer to={'/post/1'}>
+    <PostContainer to={`/post/${post.number}`}>
       <div>
-        <strong>Post title</strong>
-        <span>1 day ago</span>
+        <strong>{post.title}</strong>
+        <span>{formattedDate}</span>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci minima
-        quae laudantium, iste eligendi nulla. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Adipisci minima quae laudantium, iste
-        eligendi nulla. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Adipisci minima quae laudantium, iste eligendi nulla. Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Adipisci minima quae laudantium,
-        iste eligendi nulla. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Adipisci minima quae laudantium, iste eligendi nulla. Lorem ipsum
-        dolor sit amet consectetur adipisicing elit. Adipisci minima quae
-        laudantium, iste eligendi nulla. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Adipisci minima quae laudantium, iste eligendi nulla.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci minima
-        quae laudantium, iste eligendi nulla. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Adipisci minima quae laudantium, iste
-        eligendi nulla. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Adipisci minima quae laudantium, iste eligendi nulla.
-      </p>
+      <p>{post.body}</p>
     </PostContainer>
   );
 }
