@@ -40,12 +40,12 @@ export function HomePage() {
         setIsLoadings(false);
       }
     },
-    [posts]
+    []
   );
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [getPosts]);
 
   return (
     <>
