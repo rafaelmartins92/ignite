@@ -8,6 +8,10 @@ var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -24,6 +28,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // ../tokens/dist/index.js
 var require_dist = __commonJS({
@@ -33,7 +38,7 @@ var require_dist = __commonJS({
     var __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
     var __getOwnPropNames2 = Object.getOwnPropertyNames;
     var __hasOwnProp2 = Object.prototype.hasOwnProperty;
-    var __export = (target, all) => {
+    var __export2 = (target, all) => {
       for (var name in all)
         __defProp2(target, name, { get: all[name], enumerable: true });
     };
@@ -45,9 +50,9 @@ var require_dist = __commonJS({
       }
       return to;
     };
-    var __toCommonJS = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
-    var src_exports = {};
-    __export(src_exports, {
+    var __toCommonJS2 = (mod) => __copyProps2(__defProp2({}, "__esModule", { value: true }), mod);
+    var src_exports2 = {};
+    __export2(src_exports2, {
       colors: () => colors2,
       fontSizes: () => fontSizes,
       fontWeights: () => fontWeights,
@@ -56,7 +61,7 @@ var require_dist = __commonJS({
       radii: () => radii,
       space: () => space
     });
-    module2.exports = __toCommonJS(src_exports);
+    module2.exports = __toCommonJS2(src_exports2);
     var colors2 = {
       white: "#FFF",
       black: "#000",
@@ -131,6 +136,18 @@ var require_dist = __commonJS({
   }
 });
 
-// src/index.ts
+// src/index.tsx
+var src_exports = {};
+__export(src_exports, {
+  App: () => App
+});
+module.exports = __toCommonJS(src_exports);
 var import_tokens = __toESM(require_dist());
-console.log("colors:", import_tokens.colors);
+var import_jsx_runtime = require("react/jsx-runtime");
+function App() {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { style: { color: import_tokens.colors.primary300 }, children: "App" });
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  App
+});
