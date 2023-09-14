@@ -1,5 +1,12 @@
-import { colors } from '@ignite-ui/tokens'
+import { styled } from './styles'
+
+const Button = styled('button', {
+  fontFamily: '$default',
+  backgroundColor: '$primary500',
+  borderRadius: '$md',
+  padding: '$4',
+})
 
 export function App() {
-  return <h1 style={{ color: colors.primary300 }}>App</h1>
+  return <Button>App</Button>
 }
