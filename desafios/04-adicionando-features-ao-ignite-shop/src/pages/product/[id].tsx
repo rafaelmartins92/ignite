@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -5,53 +6,30 @@ import Stripe from 'stripe';
 import axios from 'axios';
 
 import { stripe } from '../../lib/stripe';
+import { useCart } from '../../hooks/useCart';
+import { IProduct } from '../../contexts/CartContext';
 
 import {
   ImageContainer,
   ProductContainer,
   ProductDetails,
 } from '../../styles/pages/product';
-import { useState } from 'react';
 
 interface ProductProps {
-  product: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: string;
-    description: string;
-    defaultPriceId: string;
-  };
+  product: IProduct;
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
-    useState(false);
+  const { addToCart, checkIfItemAlreadyExists } = useCart();
 
-  async function handleBuyProduct() {
-    try {
-      setIsCreatingCheckoutSession(true);
-
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
-      });
-
-      const { checkoutUrl } = response.data;
-
-      window.location.href = checkoutUrl;
-    } catch (err) {
-      setIsCreatingCheckoutSession(false);
-
-      alert('Error while connecting to checkout!');
-    }
-  }
+  const itemAlreadyInCart = checkIfItemAlreadyExists(product.id);
 
   return (
     <>
       <Head>
         <title>Rafael Martins | {product.name}</title>
       </Head>
-      
+
       <ProductContainer>
         <ImageContainer>
           <Image src={product.imageUrl} width={520} height={480} alt="" />
@@ -64,10 +42,10 @@ export default function Product({ product }: ProductProps) {
           <p>{product.description}</p>
 
           <button
-            disabled={isCreatingCheckoutSession}
-            onClick={handleBuyProduct}
+            disabled={itemAlreadyInCart}
+            onClick={() => addToCart(product)}
           >
-            Buy now
+            {itemAlreadyInCart ? 'Product already in cart' : 'Add to cart'}
           </button>
         </ProductDetails>
       </ProductContainer>
