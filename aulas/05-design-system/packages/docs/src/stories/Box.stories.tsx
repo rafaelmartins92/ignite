@@ -7,6 +7,6 @@ export default {
   args: {
     children: <Text>Testando elemento Box</Text>,
   },
-} as Meta
+} as Meta<BoxProps>
 
 export const Primary: StoryObj<BoxProps> = {}

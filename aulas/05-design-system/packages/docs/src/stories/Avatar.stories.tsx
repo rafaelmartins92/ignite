@@ -8,7 +8,7 @@ export default {
     src: 'https://github.com/rafaelmartins92.png',
     alt: 'Rafael Martins',
   },
-} as Meta
+} as Meta<AvatarProps>
 
 export const Primary: StoryObj<AvatarProps> = {}
 
