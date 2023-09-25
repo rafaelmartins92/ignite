@@ -5,7 +5,7 @@ export default {
   title: 'Surfaces/Box',
   component: Box,
   args: {
-    children: <Text>Testando elemento Box</Text>,
+    children: <Text>Testing Box element</Text>,
   },
   argTypes: {
     children: {
