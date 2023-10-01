@@ -1,0 +1,3 @@
+{
+  "extends": "@orafadev-ignite-ui/eslint-config"
+}

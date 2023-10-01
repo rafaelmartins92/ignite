@@ -1,0 +1,18 @@
+
+> @orafadev-ignite-ui/react@2.0.0 build
+> tsup src/index.tsx --format esm,cjs --dts --external react
+
+CLI Building entry: src/index.tsx
+CLI Using tsconfig: tsconfig.json
+CLI tsup v7.2.0
+CLI Target: es6
+ESM Build start
+CJS Build start
+CJS dist/index.js 13.23 KB
+CJS ⚡️ Build success in 17ms
+ESM dist/index.mjs 11.14 KB
+ESM ⚡️ Build success in 17ms
+DTS Build start
+DTS ⚡️ Build success in 1405ms
+DTS dist/index.d.mts 43.63 KB
+DTS dist/index.d.ts  43.63 KB
