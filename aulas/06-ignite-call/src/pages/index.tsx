@@ -1,7 +1,10 @@
+import { Heading, Text } from '@orafadev-ignite-ui/react';
+
 export default function Home() {
   return (
-   <div>
-    <h1>Hello World!</h1>
-   </div>
-  )
+    <div>
+      <Heading as="h1">Hello World!</Heading>
+      <Text>Hello World!</Text>
+    </div>
+  );
 }
