@@ -2,14 +2,16 @@ import { ComponentProps, ElementRef, forwardRef } from 'react'
 
 import { Input, Prefix, TextInputContainer } from './styles'
 
-export interface TextInputProps extends ComponentProps<typeof Input> {
+export interface TextInputProps
+  extends Omit<ComponentProps<typeof Input>, 'size'> {
   prefix?: string
+  size?: ComponentProps<typeof TextInputContainer>['size']
 }
 
 export const TextInput = forwardRef<ElementRef<typeof Input>, TextInputProps>(
-  ({ prefix, ...props }: TextInputProps, ref) => {
+  ({ size, prefix, ...props }: TextInputProps, ref) => {
     return (
-      <TextInputContainer>
+      <TextInputContainer size={size}>
         {!!prefix && <Prefix>{prefix}</Prefix>}
         <Input ref={ref} {...props} />
       </TextInputContainer>
