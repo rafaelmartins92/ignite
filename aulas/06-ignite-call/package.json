@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
-    "@orafadev-ignite-ui/react": "^2.0.1",
+    "@orafadev-ignite-ui/react": "^2.0.2",
     "next": "latest",
     "phosphor-react": "^1.4.1",
     "react": "latest",
