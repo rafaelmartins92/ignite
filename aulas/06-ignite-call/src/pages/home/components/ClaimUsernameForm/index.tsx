@@ -40,7 +40,7 @@ export function ClaimUsernameForm() {
     <>
       <Form as="form" onSubmit={handleSubmit(handlePreRegister)}>
         <TextInput
-          size="sm"
+          containerProps={{ size: 'sm' }}
           prefix="orafadev.com/"
           placeholder="your-user"
           {...register('username')}
