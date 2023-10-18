@@ -3,11 +3,11 @@ import { ArrowRight, Check } from 'phosphor-react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-import { AuthError, ConnectBox, ConnectItem } from './styles'
-
 import { Container, Header } from '../styles'
 
-export default function Register() {
+import { AuthError, ConnectBox, ConnectItem } from './styles'
+
+export default function ConnectCalendar() {
   const session = useSession()
   const router = useRouter()
 
