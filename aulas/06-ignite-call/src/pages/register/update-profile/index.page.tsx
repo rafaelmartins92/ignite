@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Button,
   Heading,
   MultiStep,
@@ -12,8 +13,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
+import { useRouter } from 'next/router'
 
 import { buildNextAuthOptions } from '../../api/auth/[...nextauth].api'
+import { api } from '../../lib/axios'
 
 import { Container, Header } from '../styles'
 
@@ -35,8 +38,15 @@ export default function UpdateProfile() {
   })
 
   const session = useSession()
-  console.log(session)
-  async function handleUpdateProfile(data: UpdateFormData) {}
+  const router = useRouter()
+
+  async function handleUpdateProfile(data: UpdateFormData) {
+    await api.put('/users/profile', {
+      bio: data.bio,
+    })
+
+    await router.push(`/schedule/${session.data?.user.username}`)
+  }
 
   return (
     <Container>
@@ -50,6 +60,10 @@ export default function UpdateProfile() {
       <ProfileBox as="form" onSubmit={handleSubmit(handleUpdateProfile)}>
         <label>
           <Text size="sm">Profile picture</Text>
+          <Avatar
+            src={session.data?.user.avatar_url}
+            alt={session.data?.user.name}
+          />
         </label>
 
         <label>
