@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { AxiosError } from 'axios'
 
-import { api } from '../lib/axios'
+import { api } from '../../lib/axios'
 
 import { Container, Form, FormError, Header } from './styles'
 

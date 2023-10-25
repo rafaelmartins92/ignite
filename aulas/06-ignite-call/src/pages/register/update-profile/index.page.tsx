@@ -16,7 +16,7 @@ import { getServerSession } from 'next-auth'
 import { useRouter } from 'next/router'
 
 import { buildNextAuthOptions } from '../../api/auth/[...nextauth].api'
-import { api } from '../../lib/axios'
+import { api } from '../../../lib/axios'
 
 import { Container, Header } from '../styles'
 

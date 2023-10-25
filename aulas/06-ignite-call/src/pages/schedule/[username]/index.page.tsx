@@ -1,7 +1,7 @@
 import { Avatar, Heading, Text } from '@orafadev-ignite-ui/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 
-import { prisma } from '../../lib/prisma'
+import { prisma } from '../../../lib/prisma'
 
 import { ScheduleForm } from './ScheduleForm'
 import { Container, UserHeader } from './styles'
