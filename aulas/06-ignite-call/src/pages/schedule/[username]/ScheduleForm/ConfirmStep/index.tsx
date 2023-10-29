@@ -11,7 +11,7 @@ const confirmFormSchema = z.object({
     .string()
     .min(3, { message: 'The name must have at least 3 characters' }),
   email: z.string().email({ message: 'Type a valid e-mail' }),
-  notes: z.string().nullable(),
+  observations: z.string().nullable(),
 })
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>
@@ -59,8 +59,8 @@ export function ConfirmStep() {
       </label>
 
       <label>
-        <Text size="sm">Notes</Text>
-        <TextArea {...register('notes')} />
+        <Text size="sm">Observations</Text>
+        <TextArea {...register('observations')} />
       </label>
 
       <FormActions>
