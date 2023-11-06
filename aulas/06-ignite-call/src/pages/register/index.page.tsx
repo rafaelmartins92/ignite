@@ -12,6 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { AxiosError } from 'axios'
+import { NextSeo } from 'next-seo'
 
 import { api } from '../../lib/axios'
 
@@ -67,42 +68,50 @@ export default function Register() {
   }
 
   return (
-    <Container>
-      <Header>
-        <Heading as="strong">Welcome to Ignite Call!</Heading>
-        <Text>
-          Connect your calendar to automatically check busy hours and new events
-          as they are scheduled.
-        </Text>
+    <>
+      <NextSeo
+        title="Welcome to Ignite Call"
+        description="Connect your calendar to automatically check busy hours and new
+        events as they are scheduled"
+      />
 
-        <MultiStep size={4} currentStep={1} />
-      </Header>
+      <Container>
+        <Header>
+          <Heading as="strong">Welcome to Ignite Call!</Heading>
+          <Text>
+            Connect your calendar to automatically check busy hours and new
+            events as they are scheduled.
+          </Text>
 
-      <Form as="form" onSubmit={handleSubmit(handleRegister)}>
-        <label>
-          <Text size="sm">Username</Text>
-          <TextInput
-            prefix="orafadev.com/"
-            placeholder="your-user"
-            {...register('username')}
-          />
-          {errors.username && (
-            <FormError size="sm">{errors.username.message}</FormError>
-          )}
-        </label>
+          <MultiStep size={4} currentStep={1} />
+        </Header>
 
-        <label>
-          <Text size="sm">Full name</Text>
-          <TextInput placeholder="Your name" {...register('name')} />
-          {errors.name && (
-            <FormError size="sm">{errors.name.message}</FormError>
-          )}
-        </label>
+        <Form as="form" onSubmit={handleSubmit(handleRegister)}>
+          <label>
+            <Text size="sm">Username</Text>
+            <TextInput
+              prefix="orafadev.com/"
+              placeholder="your-user"
+              {...register('username')}
+            />
+            {errors.username && (
+              <FormError size="sm">{errors.username.message}</FormError>
+            )}
+          </label>
 
-        <Button type="submit" disabled={isSubmitting}>
-          Next step <ArrowRight />
-        </Button>
-      </Form>
-    </Container>
+          <label>
+            <Text size="sm">Full name</Text>
+            <TextInput placeholder="Your name" {...register('name')} />
+            {errors.name && (
+              <FormError size="sm">{errors.name.message}</FormError>
+            )}
+          </label>
+
+          <Button type="submit" disabled={isSubmitting}>
+            Next step <ArrowRight />
+          </Button>
+        </Form>
+      </Container>
+    </>
   )
 }
