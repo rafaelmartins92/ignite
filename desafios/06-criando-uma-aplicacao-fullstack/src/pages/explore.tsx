@@ -53,7 +53,7 @@ const ExplorePage: NextPageWithLayout = () => {
 
       <TagsContainer>
         <Tag active={selectedCategory === null} onClick={() => setSelectedCategory(null)}>
-          Tudo
+          All
         </Tag>
         {categories?.map((category, i) => (
           <Tag
