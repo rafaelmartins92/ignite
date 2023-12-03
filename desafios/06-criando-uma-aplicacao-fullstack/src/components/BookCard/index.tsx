@@ -1,43 +1,47 @@
-import { Book } from "@prisma/client"
-import { Text } from "../Typography"
-import { RatingStars } from "../RatingStars"
+import { Book } from '@prisma/client';
+import { Text } from '../Typography';
+import { RatingStars } from '../RatingStars';
+import { RatingsDialog } from '../RatingsDialog';
 
-import { BookDetails, BookImage, BookName, Container, ReadBadge } from "./styles"
+import { BookDetails, BookImage, BookName, Container, ReadBadge } from './styles';
 
 export type BookWithAvgRating = Book & {
-  avgRating: number
-  alreadyRead: boolean
-}
+  avgRating: number;
+  alreadyRead: boolean;
+};
 
 type BookCardProps = {
-  book: BookWithAvgRating
-  size?: "md" | "lg"
-}
+  book: BookWithAvgRating;
+  size?: 'md' | 'lg';
+};
 
-export const BookCard = ({ book, size = "md" }: BookCardProps) => {
+export const BookCard = ({ book, size = 'md' }: BookCardProps) => {
   const IMAGE_SIZES = {
     md: {
       width: 64,
-      height: 94
+      height: 94,
     },
     lg: {
       width: 108,
-      height: 152
-    }
+      height: 152,
+    },
   };
 
   return (
+    <RatingsDialog>
       <Container>
-        {book?.alreadyRead && (
-          <ReadBadge>READ</ReadBadge>
-        )}
+        {book?.alreadyRead && <ReadBadge>READ</ReadBadge>}
 
-        <BookImage width={IMAGE_SIZES[size].width} height={IMAGE_SIZES[size].height} css={{ minWidth: IMAGE_SIZES[size].width }} alt={book.name} src={book.cover_url} />
+        <BookImage
+          width={IMAGE_SIZES[size].width}
+          height={IMAGE_SIZES[size].height}
+          css={{ minWidth: IMAGE_SIZES[size].width }}
+          alt={book.name}
+          src={book.cover_url}
+        />
         <BookDetails>
           <div>
-            <BookName size="xs">
-              {book.name}
-            </BookName>
+            <BookName size="xs">{book.name}</BookName>
             <Text size="sm" color="gray-400">
               {book.author}
             </Text>
@@ -46,5 +50,6 @@ export const BookCard = ({ book, size = "md" }: BookCardProps) => {
           <RatingStars rating={book.avgRating} />
         </BookDetails>
       </Container>
-  )
-}
+    </RatingsDialog>
+  );
+};
