@@ -1,15 +1,20 @@
+import { useState } from 'react';
+import { Link } from '../ui/Link';
 import { Text } from '../Typography';
 import { RatingWithAuthor, UserRatingCard } from '../UserRatingCard';
-import { Link } from '../ui/Link';
+import { RatingForm } from '../RatingForm';
 
 import { Container } from './styles';
 
 type BookRatingsProps = {
   ratings: RatingWithAuthor[];
+  bookId: string;
 };
-export const BookRatings = ({ ratings }: BookRatingsProps) => {
+export const BookRatings = ({ ratings, bookId }: BookRatingsProps) => {
+  const [showForm, setShowForm] = useState(false);
+
   const handleRate = () => {
-    console.log('avaliar');
+    setShowForm(true);
   };
 
   return (
@@ -20,6 +25,7 @@ export const BookRatings = ({ ratings }: BookRatingsProps) => {
       </header>
 
       <section>
+        {showForm && <RatingForm bookId={bookId} onCancel={() => setShowForm(false)} />}
         {ratings.map((rating) => (
           <UserRatingCard key={rating.id} rating={rating} />
         ))}
