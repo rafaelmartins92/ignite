@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { Check, X } from '@phosphor-icons/react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/axios';
 
 import { Avatar } from '../ui/Avatar';
@@ -27,17 +27,28 @@ export const RatingForm = ({ onCancel, bookId }: RatingFormProps) => {
 
   const submitDisabled = !description.trim() || !currentRate;
 
-  const { mutateAsync: handleRate } = useMutation(async () => {
-    await api.post(`/books/${bookId}/rate`, {
-      description,
-      rate: currentRate,
-    });
-  });
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: handleRate } = useMutation(
+    async () => {
+      await api.post(`/books/${bookId}/rate`, {
+        description,
+        rate: currentRate,
+      });
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['book', bookId]);
+        queryClient.invalidateQueries(['books']);
+        onCancel();
+      },
+    }
+  );
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (submitDisabled) return;
-    await handleRate;
+    await handleRate();
   };
 
   return (
