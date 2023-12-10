@@ -20,7 +20,7 @@ export default function Login() {
           Welcome!
         </Heading>
         <Text color="gray-200">Log in or access as a guest.</Text>
-        <AuthButtons />
+        <AuthButtons canGuest={true} />
       </WelcomeSection>
     </LoginContainer>
   );

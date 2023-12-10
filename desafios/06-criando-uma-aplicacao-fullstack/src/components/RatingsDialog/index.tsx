@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { X } from '@phosphor-icons/react/dist/ssr';
 import { BookOpen, BookmarkSimple } from '@phosphor-icons/react';
 import { api } from '@/lib/axios';
@@ -39,6 +40,15 @@ type RatingsDialogProps = {
 export const RatingsDialog = ({ bookId, children }: RatingsDialogProps) => {
   const [open, setOpen] = useState(false);
 
+  const router = useRouter();
+  const paramBookId = router.query.book as string;
+
+  useEffect(() => {
+    if (paramBookId === bookId) {
+      setOpen(true);
+    }
+  }, [bookId, paramBookId]);
+
   const { data: book } = useQuery<BookDetails>(
     ['book', bookId],
     async () => {
@@ -54,10 +64,18 @@ export const RatingsDialog = ({ bookId, children }: RatingsDialogProps) => {
 
   const categories = book?.categories?.map((x) => x?.category?.name)?.join(', ') ?? '';
 
-  console.log(categories);
+  const onOpenChange = (open: boolean) => {
+    if (open) {
+      router.push(`/explore?book=${bookId}`, undefined, { shallow: true });
+    } else {
+      router.push('/explore', undefined, { shallow: true });
+    }
+
+    setOpen(open);
+  };
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
 
       <Dialog.Portal>
