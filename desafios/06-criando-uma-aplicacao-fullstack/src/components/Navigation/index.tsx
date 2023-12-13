@@ -25,7 +25,7 @@ export const Navigation = () => {
 
   const navItems = useMemo(() => {
     if (session) {
-      return NAT_ITEMS.concat({ label: 'Profile', href: `profile/${session.user.id}`, icon: <User size={24} /> });
+      return NAT_ITEMS.concat({ label: 'Profile', href: `/profile/${session.user.id}`, icon: <User size={24} /> });
     }
 
     return NAT_ITEMS;

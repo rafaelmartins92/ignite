@@ -8,7 +8,7 @@ export const Container = styled('div', {
   overflowY: 'auto',
   paddingBottom: '40',
 
-  '&::-webkit-scrollbal': {
+  '&::-webkit-scrollbar': {
     display: 'none',
   },
 });

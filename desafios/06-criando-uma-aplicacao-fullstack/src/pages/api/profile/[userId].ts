@@ -51,14 +51,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       name: profile?.name,
       member_since: profile?.created_at,
     },
-    rating: profile?.ratings,
+    ratings: profile?.ratings,
     readPages,
     ratedBooks,
     readAuthors: readAuthors?.length,
     mostReadCategory,
   };
-
-  console.log(mostReadCategory);
 
   return res.json({ profile: profileData });
 }
